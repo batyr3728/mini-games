@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body data-lang="ru">
+
+<header class="top-bar">
+  <button class="icon-btn" id="backBtn">⬅️</button>
+  <div class="top-actions">
+    <button class="icon-btn" id="langBtn">🌍</button>
+    <button class="icon-btn" id="themeBtn">🌗</button>
+  </div>
+</header>
+
+<main class="wrapper">
+
+  <div class="mode-box">
+    <button class="mode active" id="modeBot">VS BOT</button>
+    <button class="mode" id="modePvp">2 PLAYERS</button>
+  </div>
+
+  <div class="score-row">
+    <div class="indicator active" id="indX">
+      <div class="avatar" id="avatarX">😺</div>
+      <div class="symbol">X</div>
+    </div>
+
+    <div class="score-box">
+      <span id="scoreX">0</span>
+      <span>-</span>
+      <span id="scoreO">0</span>
+    </div>
+
+    <div class="indicator" id="indO">
+      <div class="avatar" id="avatarO">🤖</div>
+      <div class="symbol">O</div>
+    </div>
+  </div>
+
+  <div class="board" id="board">
+    <div class="cell" data-i="0"></div>
+    <div class="cell" data-i="1"></div>
+    <div class="cell" data-i="2"></div>
+    <div class="cell" data-i="3"></div>
+    <div class="cell" data-i="4"></div>
+    <div class="cell" data-i="5"></div>
+    <div class="cell" data-i="6"></div>
+    <div class="cell" data-i="7"></div>
+    <div class="cell" data-i="8"></div>
+  </div>
+
+  <button class="reset" id="resetBtn">RESET</button>
+  <button class="difficulty" id="difficultyBtn">EASY</button>
+
+</main>
+
+<!-- Аудио-элемент для звуков победы и поражения -->
+<audio id="gameSound" preload="auto"></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+/* =====================
+   THEME VARIABLES
+===================== */
+:root {
+  --bg-page:    #f8f9fa;      /* мягкий сероватый фон страницы */
+  --bg-header:  #e9ecef;
+  --bg-card:    #ffffff;
+  --bg-cell:    #e9ecef;      /* ячейки светло-серые — отличаются от белого поля */
+  --border-cell: 1px solid #dee2e6;
+  --text:       #212529;
+  --accent:     #4caf50;
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --bg-page:    #121212;
+  --bg-header:  #1a1a1a;
+  --bg-card:    #1e1e1e;
+  --bg-cell:    #252525;
+  --border-cell: 1px solid #333;
+  --text:       #e0e0e0;
+  --accent:     #66bb6a;
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* =====================
+   BASE
+===================== */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+/* =====================
+   HEADER
+===================== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--bg-header);
+  box-shadow: var(--shadow-soft);
+}
+
+.icon-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 18px;
+  box-shadow: 0 0 6px rgba(76,175,80,.5);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(76,175,80,0.7);
+}
+
+/* =====================
+   LAYOUT
+===================== */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+/* =====================
+   MODE
+===================== */
+.mode-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mode {
+  background: var(--bg-card);
+  color: var(--text);
+  border: none;
+  border-radius: 14px;
+  padding: 10px 24px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mode.active {
+  background: var(--accent);
+  color: #fff;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.mode:hover:not(.active) {
+  opacity: 0.75;
+  transform: scale(1.04);
+}
+
+/* =====================
+   SCORE + INDICATORS
+===================== */
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.score-box {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 10px 26px;
+  font-size: 26px;
+  box-shadow: var(--shadow-soft);
+}
+
+.indicator {
+  text-align: center;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+}
+
+.indicator.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.avatar {
+  font-size: 34px;
+}
+
+.symbol {
+  font-size: 18px;
+}
+
+/* =====================
+   BOARD
+===================== */
+.board {
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  gap: 10px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid #dee2e6;
+}
+
+[data-theme="dark"] .board {
+  border: 2px solid #333;
+}
+
+.cell {
+  width: 72px;
+  height: 72px;
+  background: var(--bg-cell);
+  border: var(--border-cell);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.12s ease;
+  color: var(--text);
+}
+
+.cell:hover {
+  background: #dee2e6;
+  transform: scale(1.04);
+}
+
+/* Когда клетка заполнена — фиксируем фон и отключаем hover */
+.cell:not(:empty) {
+  background: var(--bg-cell) !important;
+  pointer-events: none; /* отключаем hover после хода */
+}
+
+/* Цвета символов */
+.cell.X {
+  color: #d32f2f; /* красный X */
+}
+
+.cell.O {
+  color: #1976d2; /* синий O */
+}
+
+/* Выигрышные клетки */
+.cell.win {
+  background: var(--accent) !important;
+  color: white !important;
+  animation: pulse-win 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse-win {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.reset,
+.difficulty {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(76,175,80,.3);
+}
+
+.reset:hover,
+.difficulty:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(76,175,80,.5);
+}
+
+.difficulty {
+  margin-top: 8px;
+}
+
+/* =====================
+   ADAPTIVE (PHONE)
+===================== */
+@media (max-height: 720px) {
+  .wrapper {
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .score-box {
+    font-size: 22px;
+    padding: 8px 20px;
+  }
+
+  .avatar {
+    font-size: 30px;
+  }
+
+  .symbol {
+    font-size: 16px;
+  }
+
+  .board {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .cell {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+  }
+
+  .reset,
+  .difficulty {
+    padding: 8px 20px;
+    font-size: 15px;
+  }
+
+  .mode {
+    padding: 8px 20px;
+  }
+}
